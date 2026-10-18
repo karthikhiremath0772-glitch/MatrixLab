@@ -41,6 +41,13 @@ class TestVectorOperations(unittest.TestCase):
         )
         np.testing.assert_allclose(result, [0.25, 0.4, 0.5])
 
+    def test_divide_vectors_by_zero(self):
+        with self.assertRaises(ZeroDivisionError):
+            divide_vectors(
+                np.array([10, 20, 30]),
+                np.array([2, 0, 5])
+            )
+
     def test_dot_product(self):
         result = calculate_dot_product(
             np.array([1, 2, 3]),
@@ -55,6 +62,42 @@ class TestVectorOperations(unittest.TestCase):
                 np.array([3, 4, 5])
             )
 
+    
+    def test_add_vectors_different_lengths(self):
+        with self.assertRaises(ValueError):
+            add_vectors(
+                np.array([1, 2, 3]),
+                np.array([4, 5])
+            )
+
+    def test_add_vectors_two_dimensional_input(self):
+        with self.assertRaises(ValueError):
+            add_vectors(
+                np.array([[1, 2], [3, 4]]),
+                np.array([[5, 6], [7, 8]])
+            )
+    def test_subtract_vectors_different_lengths(self):
+        with self.assertRaises(ValueError):
+            subtract_vectors(
+              
+                np.array([1, 2, 3]),
+                np.array([4, 5])
+            ) 
+    
+    def test_multiply_vectors_different_lengths(self):
+        with self.assertRaises(ValueError):
+            multiply_vectors(
+                np.array([1, 2, 3]),
+                np.array([4, 5])
+            )
+
+    def test_divide_vectors_different_lengths(self):
+        with self.assertRaises(ValueError):
+            divide_vectors(
+                np.array([10, 20, 30]),
+                np.array([2, 5])
+            )
+          
 
 if __name__ == "__main__":
     unittest.main()
